@@ -11,8 +11,7 @@ describe('Testa o funcionamento do componente <NotFound />.js', () => {
     const h2 = screen.getByRole('heading', { level: 2, name: text });
     expect(h2).toBeInTheDocument();
 
-    const allImgs = screen.getAllByRole('img');
-    const emoji = allImgs[0];
+    const emoji = screen.getByRole((_content, e) => e.tagName === 'SPAN');
     expect(emoji).toHaveAttribute('aria-label', 'Crying emoji');
   });
   it('Teste se existe a imagem `https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif`', () => {
