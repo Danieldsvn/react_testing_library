@@ -3,13 +3,13 @@ import React from 'react';
 import renderWithRouter from './renderWithRouter';
 import About from '../components/About';
 
-const aboutText1 = 'This application simulates a Pokédex, a digital encyclopedia containing all Pokémons';
-const aboutText2 = 'One can filter Pokémons by type, and see more details for each one of them';
+const aboutText1 = /This application simulates a Pokédex/;
+const aboutText2 = /One can filter Pokémons by type/;
 
-const urlPokedexImg = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png'
+const urlPokedexImg = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
 
 describe('Testa o funcionamento do componente <About />.js', () => {
-  it('Teste se a página contém as informações sobre a Pokédex.', () => {
+  it('Testa se a página contém as informações sobre a Pokédex.', () => {
     renderWithRouter(<About />);
 
     const text1 = screen.getByText(`${aboutText1}`);
@@ -17,19 +17,19 @@ describe('Testa o funcionamento do componente <About />.js', () => {
     const text2 = screen.getByText(`${aboutText2}`);
     expect(text2).toBeInTheDocument();
   });
-  it('Teste se a página contém um heading `h2` com o texto `About Pokédex`', () => {
+  it('Testa se a página contém um heading `h2` com o texto `About Pokédex`', () => {
     renderWithRouter(<About />);
 
     const h2Text = screen.getByRole('heading', { level: 2, name: /About Pokédex/i });
     expect(h2Text).toBeInTheDocument();
   });
-  it('Teste se a página contém dois parágrafos com texto sobre a Pokédex.', () => {
+  it('Testa se a página contém dois parágrafos com texto sobre a Pokédex.', () => {
     renderWithRouter(<About />);
 
-    const pQuantity = screen.getAllByRole('paragraph');
+    const pQuantity = screen.getAllByText('*');
     expect(pQuantity).toHaveLength(2);
   });
-  it('este se a página contém a seguinte imagem de uma Pokédex com a Url', () => {
+  it('Testa se a página contém a seguinte imagem de uma Pokédex com a Url', () => {
     renderWithRouter(<About />);
 
     const pokedex = screen.getByRole('img');
