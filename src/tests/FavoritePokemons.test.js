@@ -29,8 +29,8 @@ describe('Testa o funcionamento do componente <FavoritePokemons />.js', () => {
     userEvent.click(checkbox);
     expect(checkbox.checked).toBeTruthy();
 
-    const yellowStar = screen.getByRole((_content, e) => e.className === 'favorite-icon');
-    expect(yellowStar).toHaveAttribute('alt', 'Pikachu is marked as favorite');
+    const favStar = screen.getByRole((_content, e) => e.className === 'favorite-icon');
+    expect(favStar).toHaveAttribute('alt', 'Pikachu is marked as favorite');
 
     const homeLink = screen.getByRole('link', { name: /Home/i });
     expect(homeLink).toBeInTheDocument();
@@ -56,8 +56,8 @@ describe('Testa o funcionamento do componente <FavoritePokemons />.js', () => {
     userEvent.click(checkbox2);
     expect(checkbox2.checked).toBeTruthy();
 
-    const yellowStar2 = screen.getByRole((_content, e) => e.className === 'favorite-icon');
-    expect(yellowStar2).toHaveAttribute('alt', 'Charmander is marked as favorite');
+    const favStar2 = screen.getByRole((_content, e) => e.className === 'favorite-icon');
+    expect(favStar2).toHaveAttribute('alt', 'Charmander is marked as favorite');
 
     const favoriteLink = screen.getByRole('link', { name: 'Favorite Pokémons' });
     expect(favoriteLink).toBeInTheDocument();
