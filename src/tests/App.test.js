@@ -61,7 +61,7 @@ describe('Testa o funcionamento do componente <App />.js', () => {
 
     customHistory.push('/favorites');
 
-    const favoritePokemon = screen.getByRole('heading', { name: /Favorite pokémons/i });
+    const favoritePokemon = screen.getByRole('heading', { name: /Favorimons/i });
 
     expect(favoritePokemon).toBeInTheDocument();
   });
