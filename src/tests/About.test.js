@@ -24,7 +24,7 @@ describe('Testa o funcionamento do componente <About />.js', () => {
   it('Testa se a página contém dois parágrafos com texto sobre a Pokédex.', () => {
     renderWithRouter(<About />);
 
-    const pQuantity = screen.queryAllByText((_content, e) => e.tagName === 'P');
+    const pQuantity = screen.getAllByText((_content, e) => e.tagName === 'P');
     expect(pQuantity).toHaveLength(2);
   });
   it('Testa se a página contém a seguinte imagem de uma Pokédex com a Url', () => {
