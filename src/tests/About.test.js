@@ -3,8 +3,8 @@ import React from 'react';
 import renderWithRouter from './renderWithRouter';
 import About from '../components/About';
 
-const aboutText1 = /This application simulates a Pokédex/;
-const aboutText2 = /One can filter Pokémons by type/;
+const aboutText1 = /This|application|simulates|a|Pokédex/gi;
+const aboutText2 = /One|can|filter|Pokémons|by|type/gi;
 
 const urlPokedexImg = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
 
