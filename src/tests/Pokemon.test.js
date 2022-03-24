@@ -2,18 +2,20 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import renderWithRouter from './renderWithRouter';
-import Pokemon from '../components/Pokemons';
+import Pokemon from '../components/Pokemon';
 import App from '../App';
 
 describe('Testa o funcionamento do componente <Pokemon />.js', () => {
   it('Teste se é renderizado um card com as informações de determinado pokémon.', () => {
-    // - O nome correto do Pokémon deve ser mostrado na tela;
-
-    // - O tipo correto do pokémon deve ser mostrado na tela.
-
+    // !- O nome correto do Pokémon deve ser mostrado na tela; 
+    // !- O tipo correto do pokémon deve ser mostrado na tela.
     // - O peso médio do pokémon deve ser exibido com um texto no formato `Average weight: <value> <measurementUnit>`; onde `<value>` e `<measurementUnit>` são, respectivamente, o peso médio do pokémon e sua unidade de medida.
-
     // - A imagem do Pokémon deve ser exibida. Ela deve conter um atributo `src` com a URL da imagem e um atributo `alt` com o texto `<name> sprite`, onde `<name>` é o nome do pokémon;   
+    renderWithRouter(<App />);
+    const pokemonName = screen.getByTestId('pokemon-name');
+    expect(pokemonName.innerHTML).toEqual('Pikachu');
+    const pokemonType = screen.getByTestId('pokemon-type');
+    expect(pokemonType.innerHTML).toEqual('Electric');
 
     
   });
