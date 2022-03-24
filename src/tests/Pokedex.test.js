@@ -80,12 +80,132 @@ describe('Testa o funcionamento do componente <Pokedex />.js', () => {
     //  A partir da seleção de um botão de tipo, a Pokédex deve circular somente pelos pokémons daquele tipo;
     //  O texto do botão deve corresponder ao `nome do tipo`, ex. `Psychic`;
     //  O botão `All` precisa estar **sempre** visível.
-    // renderWithRouter(<App />);
-    // const allButtons = screen.getAllByRole((content, element) => {
-    //   (element.tagName === 'button') && (content !== /Próximo pokemon/i);
-    // });
 
-    // expect(allButtons).toHaveLength(8);
+    renderWithRouter(<App />);
+    const allButton = screen.getByRole('button', { name: 'All' });
+    expect(allButton).toBeInTheDocument();
+    let electricButton = screen.getAllByRole('button', { name: /Electric/i });
+    expect(electricButton).toHaveLength(1);
+    electricButton = screen.getByRole('button', { name: /Electric/i });
+    expect(electricButton).toBeInTheDocument();
+
+    userEvent.click(electricButton);
+
+    expect(allButton).toBeInTheDocument();
+    let pokemonType = screen.getByTestId('pokemon-type');
+    expect(pokemonType).toBeInTheDocument();
+    expect(pokemonType.innerHTML).toEqual(electricButton.innerHTML);
+    const nextPokemonButton = screen.getByTestId('next-pokemon');
+    expect(nextPokemonButton).toBeInTheDocument();
+    expect(nextPokemonButton).toHaveAttribute('disabled');
+    let fireButton = screen.getAllByRole('button', { name: /Fire/i });
+    expect(fireButton).toHaveLength(1);
+    fireButton = screen.getByRole('button', { name: /Fire/i });
+    expect(fireButton).toBeInTheDocument();
+
+    userEvent.click(fireButton);
+
+    expect(allButton).toBeInTheDocument();
+    const poke1st1 = screen.getByTestId('pokemon-name');
+    expect(poke1st1.innerHTML).toEqual('Charmander');
+    pokemonType = screen.getByTestId('pokemon-type');
+    expect(pokemonType).toBeInTheDocument();
+    expect(pokemonType.innerHTML).toEqual(fireButton.innerHTML);
+    expect(nextPokemonButton).toBeInTheDocument();
+    expect(nextPokemonButton).not.toHaveAttribute('disabled');
+    userEvent.click(nextPokemonButton);
+    expect(allButton).toBeInTheDocument();
+    const poke2nd1 = screen.getByTestId('pokemon-name');
+    expect(poke2nd1.innerHTML).toEqual('Rapidash');
+    pokemonType = screen.getByTestId('pokemon-type');
+    expect(pokemonType).toBeInTheDocument();
+    expect(pokemonType.innerHTML).toEqual(fireButton.innerHTML);
+    userEvent.click(nextPokemonButton);
+    expect(poke1st1).toEqual(screen.getByTestId('pokemon-name'));
+    let bugButton = screen.getAllByRole('button', { name: /Bug/i });
+    expect(bugButton).toHaveLength(1);
+    bugButton = screen.getByRole('button', { name: /Bug/i });
+    expect(bugButton).toBeInTheDocument();
+
+    userEvent.click(bugButton);
+
+    expect(allButton).toBeInTheDocument();
+    const poke1st2 = screen.getByTestId('pokemon-name');
+    expect(poke1st2.innerHTML).toEqual('Caterpie');
+    pokemonType = screen.getByTestId('pokemon-type');
+    expect(pokemonType).toBeInTheDocument();
+    expect(pokemonType.innerHTML).toEqual(bugButton.innerHTML);
+    expect(nextPokemonButton).toBeInTheDocument();
+    expect(nextPokemonButton).toHaveAttribute('disabled');
+    let poisonButton = screen.getAllByRole('button', { name: /Poison/i });
+    expect(poisonButton).toHaveLength(1);
+    poisonButton = screen.getByRole('button', { name: /Poison/i });
+    expect(poisonButton).toBeInTheDocument();
+
+    userEvent.click(poisonButton);
+
+    expect(allButton).toBeInTheDocument();
+    const poke1st3 = screen.getByTestId('pokemon-name');
+    expect(poke1st3.innerHTML).toEqual('Ekans');
+    pokemonType = screen.getByTestId('pokemon-type');
+    expect(pokemonType).toBeInTheDocument();
+    expect(pokemonType.innerHTML).toEqual(poisonButton.innerHTML);
+    expect(nextPokemonButton).toBeInTheDocument();
+    expect(nextPokemonButton).toHaveAttribute('disabled');
+    let psychicButton = screen.getAllByRole('button', { name: /Psychic/i });
+    expect(psychicButton).toHaveLength(1);
+    psychicButton = screen.getByRole('button', { name: /Psychic/i });
+    expect(psychicButton).toBeInTheDocument();
+
+    userEvent.click(psychicButton);
+
+    expect(allButton).toBeInTheDocument();
+    const poke1st4 = screen.getByTestId('pokemon-name');
+    expect(poke1st4.innerHTML).toEqual('Alakazam');
+    pokemonType = screen.getByTestId('pokemon-type');
+    expect(pokemonType).toBeInTheDocument();
+    expect(pokemonType.innerHTML).toEqual(psychicButton.innerHTML);
+    expect(nextPokemonButton).toBeInTheDocument();
+    expect(nextPokemonButton).not.toHaveAttribute('disabled');
+    userEvent.click(nextPokemonButton);
+    expect(allButton).toBeInTheDocument();
+    const poke2nd4 = screen.getByTestId('pokemon-name');
+    expect(poke2nd4.innerHTML).toEqual('Mew');
+    pokemonType = screen.getByTestId('pokemon-type');
+    expect(pokemonType).toBeInTheDocument();
+    expect(pokemonType.innerHTML).toEqual(psychicButton.innerHTML);
+    userEvent.click(nextPokemonButton);
+    expect(poke1st4).toEqual(screen.getByTestId('pokemon-name'));
+    let normalButton = screen.getAllByRole('button', { name: /Normal/i });
+    expect(normalButton).toHaveLength(1);
+    normalButton = screen.getByRole('button', { name: /Normal/i });
+    expect(normalButton).toBeInTheDocument();
+
+    userEvent.click(normalButton);
+
+    expect(allButton).toBeInTheDocument();
+    const poke1st5 = screen.getByTestId('pokemon-name');
+    expect(poke1st5.innerHTML).toEqual('Snorlax');
+    pokemonType = screen.getByTestId('pokemon-type');
+    expect(pokemonType).toBeInTheDocument();
+    expect(pokemonType.innerHTML).toEqual(normalButton.innerHTML);
+    expect(nextPokemonButton).toBeInTheDocument();
+    expect(nextPokemonButton).toHaveAttribute('disabled');
+    let dragonButton = screen.getAllByRole('button', { name: /Dragon/i });
+    expect(dragonButton).toHaveLength(1);
+    dragonButton = screen.getByRole('button', { name: /Dragon/i });
+    expect(dragonButton).toBeInTheDocument();
+
+    userEvent.click(dragonButton);
+
+    expect(allButton).toBeInTheDocument();
+    const poke1st6 = screen.getByTestId('pokemon-name');
+    expect(poke1st6.innerHTML).toEqual('Dragonair');
+    pokemonType = screen.getByTestId('pokemon-type');
+    expect(pokemonType).toBeInTheDocument();
+    expect(pokemonType.innerHTML).toEqual(dragonButton.innerHTML);
+    expect(nextPokemonButton).toBeInTheDocument();
+    expect(nextPokemonButton).toHaveAttribute('disabled');
   });
   it('Teste se a Pokédex contém um botão para resetar o filtro', () => {
     // O texto do botão deve ser `All`;
