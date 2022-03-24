@@ -1,4 +1,4 @@
-import { getAllByTestId, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import renderWithRouter from './renderWithRouter';
@@ -9,10 +9,11 @@ describe('Testa o funcionamento do componente <Pokedex />.js', () => {
   it('Teste se página contém um heading `h2` com o texto `Encountered pokémons`', () => {
     renderWithRouter(<App />);
 
-    const heading = screen.getByRole('heading', { level: 2, name: /Encountered pokémons/i });
+    const h2 = /Encountered pokémons/i;
+    const heading = screen.getByRole('heading', { level: 2, name: h2 });
     expect(heading).toBeInTheDocument();
   });
-  it('Teste se é exibido o próximo Pokémon quando o botão `Próximo pokémon` é clicado', () => {
+  it('É exibido o próximo Pokémon quando o botão `Próximo pokémon`é clicado', () => {
     // O botão deve conter o texto `Próximo pokémon
     // Os próximos Pokémons da lista devem ser mostrados, um a um, ao clicar sucessivamente no botão;
     //  O primeiro Pokémon da lista deve ser mostrado ao clicar no botão, se estiver no último Pokémon da lista;
@@ -79,7 +80,12 @@ describe('Testa o funcionamento do componente <Pokedex />.js', () => {
     //  A partir da seleção de um botão de tipo, a Pokédex deve circular somente pelos pokémons daquele tipo;
     //  O texto do botão deve corresponder ao `nome do tipo`, ex. `Psychic`;
     //  O botão `All` precisa estar **sempre** visível.
-    renderWithRouter(<App />);
+    // renderWithRouter(<App />);
+    // const allButtons = screen.getAllByRole((content, element) => {
+    //   (element.tagName === 'button') && (content !== /Próximo pokemon/i);
+    // });
+
+    // expect(allButtons).toHaveLength(8);
   });
   it('Teste se a Pokédex contém um botão para resetar o filtro', () => {
     // O texto do botão deve ser `All`;
