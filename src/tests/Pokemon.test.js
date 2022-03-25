@@ -33,10 +33,20 @@ describe('Testa o funcionamento do componente <Pokemon />.js', () => {
     expect(moreDetails).toHaveAttribute('href','/pokemons/25');
   });
   it('Teste se ao clicar no link de navegação do Pokémon, é feito o redirecionamento da aplicação para a página de detalhes de Pokémon. ', () => {
-   
+    const moreDetailsPath = '/pokemons/25'  
+    const { customHistory } = renderWithRouter(<App />);
+    const moreDetails = screen.getByRole('link', { name: 'More details'});  
+    expect(moreDetails).toHaveAttribute('href', moreDetailsPath );
+
+    userEvent.click(moreDetails);
+
+    customHistory.push(moreDetailsPath)
+
+    const pokemonDetails = screen.getByRole('heading', { name: 'Pikachu Details'});
+    expect(pokemonDetails).toBeInTheDocument();
   });
   it('- Teste também se a URL exibida no navegador muda para `/pokemon/<id>`, onde `<id>` é o id do Pokémon cujos detalhes se deseja ver;', () => {
-   
+    
   });
   it('- Teste se existe um ícone de estrela nos Pokémons favoritados.', () => {     
     // - O ícone deve ser uma imagem com o atributo `src` contendo o caminho `/star-icon.svg`;
