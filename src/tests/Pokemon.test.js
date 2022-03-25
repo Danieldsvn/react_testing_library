@@ -28,7 +28,9 @@ describe('Testa o funcionamento do componente <Pokemon />.js', () => {
     
   });
   it('Teste se o card do Pokémon indicado na Pokédex contém um link de navegação para exibir detalhes deste Pokémon. O link deve possuir a URL `/pokemons/<id>`, onde `<id>` é o id do Pokémon exibido;', () => {
-    
+    renderWithRouter(<App />);
+    const moreDetails = screen.getByRole('link', { name: 'More details'});  
+    expect(moreDetails).toHaveAttribute('href','/pokemons/25');
   });
   it('Teste se ao clicar no link de navegação do Pokémon, é feito o redirecionamento da aplicação para a página de detalhes de Pokémon. ', () => {
    
