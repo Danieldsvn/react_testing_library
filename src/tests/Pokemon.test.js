@@ -45,8 +45,17 @@ describe('Testa o funcionamento do componente <Pokemon />.js', () => {
     const pokemonDetails = screen.getByRole('heading', { name: 'Pikachu Details'});
     expect(pokemonDetails).toBeInTheDocument();
   });
-  it('- Teste também se a URL exibida no navegador muda para `/pokemon/<id>`, onde `<id>` é o id do Pokémon cujos detalhes se deseja ver;', () => {
+  it('- Teste também se a URL exibida no navegador muda para `/pokemon/<id>`, onde `<id>` é o id do Pokémon cujos detalhes se deseja ver;', () => {    
+    const moreDetailsPath = '/pokemons/25'  
+    const { customHistory } = renderWithRouter(<App />);
+    const moreDetails = screen.getByRole('link', { name: 'More details'});  
+    expect(moreDetails).toHaveAttribute('href', moreDetailsPath );
+
+    userEvent.click(moreDetails);
+
+    customHistory.push(moreDetailsPath)
     
+    expect(customHistory.location.pathname).toEqual(moreDetailsPath)
   });
   it('- Teste se existe um ícone de estrela nos Pokémons favoritados.', () => {     
     // - O ícone deve ser uma imagem com o atributo `src` contendo o caminho `/star-icon.svg`;
