@@ -1,5 +1,5 @@
 # React Testing Library 
-14º projeto na Trybe. Neste projeto foi escrito testes para uma aplicação React.js já provida.
+13º projeto na Trybe. Neste projeto foi escrito testes para uma aplicação React.js já provida.
 
 ## Tecnologias empregadas:
 
